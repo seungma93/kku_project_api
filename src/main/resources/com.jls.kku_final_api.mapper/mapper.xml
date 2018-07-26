@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jls.kku_final_api.Repository.Repository">
+
+    <select id="getDatas" parameterType="com.jls.kku_final_api.DTO.TestDTO"
+            resultType="com.jls.kku_final_api.DTO.TestDTO">
+        select * from test;
+    </select>
+
+</mapper>

@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://kku-final-team-jls.cvlwr4kpwllb.ap-northeast-2.rds.amazonaws.com/kku_voicemarket
+    username: joe
+    password: 201216906
+    mybatis:
+      config-location: classpath:mybatis-conf.xml
