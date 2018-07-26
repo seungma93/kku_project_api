@@ -25,7 +25,7 @@ public class KkuFinalApiApplication {
         sqlSessionFactoryBean.setDataSource(dataSource);
 
         Resource[] resources = new PathMatchingResourcePatternResolver()
-                .getResources("classpath:com.jls.kku_final_api.mapper/mapper.xml");
+                .getResources("classpath:com.jls.kku_final_api.mapper/*.xml");
         sqlSessionFactoryBean.setMapperLocations(resources);
 
         return sqlSessionFactoryBean.getObject();

@@ -3,6 +3,6 @@
         <package name="com.jls.kku_final_api"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mapper.xml"/>
+        <mapper resource="nuser_mapper.xml"/>
     </mappers>
 </configuration>
