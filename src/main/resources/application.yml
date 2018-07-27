@@ -6,3 +6,7 @@ spring:
     password: 201216906
     mybatis:
       config-location: classpath:mybatis-conf.xml
+  security:
+    user:
+      name: joe
+      password: 1234

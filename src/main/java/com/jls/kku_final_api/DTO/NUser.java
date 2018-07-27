@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @Table(name = "n_user")
-public class NUserVO implements Serializable {
+public class NUser implements Serializable {
     @Id
     @Column(name = "u_id")
     private String id;
