@@ -20,6 +20,7 @@ public class NUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+        System.out.println("loadUserByUsername");
         Optional<NUser> user = userRepository.findById(id);
         if (!user.isPresent())
             throw new UsernameNotFoundException("id not found " + id);
