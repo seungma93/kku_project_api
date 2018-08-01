@@ -12,17 +12,17 @@ spring:
     password: 201216906
     mybatis:
       config-location: classpath:mybatis-conf.xml
-  security:
-    user:
-      name: joe
-      password: 1234
-    oauth2:
-      resource:
-        jwt:
-          key-value:
-            -----BEGIN PUBLIC KEY-----
-            MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRHS78MmcEDzzxNlgsgZPL1ra4
-            yfY4hkLInT7kMYZ7b0mQ9dSpbQ93mA2jEU+bHY4lSSuml3RxHXve5TogCVy70b9m
-            jdfuDj0+j1PNZe4Ubwas6iARcjWBr+FkhQ/Tp12MB8YSfUe7x0NiCGl5j3KXONOa
-            oKLzbQwk2JnIqL6aswIDAQAB
-            -----END PUBLIC KEY-----
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value:
+          -----BEGIN PUBLIC KEY-----
+          MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRHS78MmcEDzzxNlgsgZPL1ra4
+          yfY4hkLInT7kMYZ7b0mQ9dSpbQ93mA2jEU+bHY4lSSuml3RxHXve5TogCVy70b9m
+          jdfuDj0+j1PNZe4Ubwas6iARcjWBr+FkhQ/Tp12MB8YSfUe7x0NiCGl5j3KXONOa
+          oKLzbQwk2JnIqL6aswIDAQAB
+          -----END PUBLIC KEY-----
+  filter:
+    order: 3
