@@ -54,14 +54,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         return defaultTokenServices;
     }
 
-    @Override
+    /*@Override
     public void configure(HttpSecurity http) throws Exception {
         System.out.println("ResourceServerConfig configure(HttpSecurity http)");
-        /*http.authorizeRequests()
-                .antMatchers("/api/**").hasRole("USER");*/
         super.configure(http);
-
-    }
+    }*/
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -69,6 +66,4 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         System.out.println("ResourceServerConfig resourceId " + resourceId);
         resources.resourceId(resourceId);
     }
-
-
 }

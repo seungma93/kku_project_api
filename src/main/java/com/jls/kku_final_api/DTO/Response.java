@@ -7,7 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Response<T> {
-    private int code = ResponseCode.SUCCESS;
     private String message;
     private boolean isSuccess;
     private T response;

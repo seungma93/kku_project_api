@@ -26,8 +26,8 @@ public class NUserController {
 
         if (users.size() == 0) {
             response.setSuccess(false);
-            response.setCode(404);
         }
         return response;
     }
+
 }

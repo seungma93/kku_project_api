@@ -10,6 +10,7 @@ import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,17 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    public SecurityConfig() {
-        System.out.println("SecurityConfig");
-    }
-
-    public SecurityConfig(boolean disableDefaults) {
-        super(disableDefaults);
-        System.out.println("SecurityConfig");
-    }
 
     @Autowired
     private NUserDetailService userDetailService;
@@ -41,7 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         System.out.println("SecurityConfig passwordEncoder");
         return new BCryptPasswordEncoder();
-        //return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
 
@@ -71,5 +62,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        //super.configure(web);
+        web.ignoring().antMatchers("/login/findId");
+    }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        //super.configure(http);
+        http.authorizeRequests()
+                .antMatchers("/nuser/user")
+                .authenticated();
+    }
 }

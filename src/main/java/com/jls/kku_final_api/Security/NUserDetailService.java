@@ -15,10 +15,6 @@ import java.util.Optional;
 @Service
 public class NUserDetailService implements UserDetailsService {
 
-    public NUserDetailService() {
-        System.out.println("NUserDetailService");
-    }
-
     @Autowired
     private NUserRepository userRepository;
 
