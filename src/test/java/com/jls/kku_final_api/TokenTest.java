@@ -10,14 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import sun.net.www.http.HttpClient;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.*;
+import java.net.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class HttpTest {
     @Test
@@ -33,19 +29,32 @@ public class HttpTest {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<String> request = new HttpEntity<>(httpHeaders);
-        String tokenUrl = "http://localhost:8080/api/oauth/token";
+        String tokenUrl = "http://root:12345@localhost:8080/api/oauth/token";
         tokenUrl += "?grant_type=password";
         tokenUrl += "&username=joe";
         tokenUrl += "&password=1234";
 
         response = restTemplate.exchange(tokenUrl, HttpMethod.POST, request, String.class);
-        /*BufferedReader buffer = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        StringBuilder sb = new StringBuilder();
-        String tmp = null;
-        while ((tmp = buffer.readLine()) != null) {
-            sb.append(tmp);
-        }
+    }
 
-        System.out.println(sb.toString());*/
+    @Test
+    public void httpTest2() throws IOException {
+        URL url = new URL("http://127.0.0.1:8080/api/oauth/token?grant_type=password&username=joe&password=1234");
+        URLConnection urlConnection = url.openConnection();
+        HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
+        httpURLConnection.setRequestMethod("POST");
+        httpURLConnection.setDoOutput(true);
+        httpURLConnection.setDoInput(true);
+
+        String auth = "nuser:kku_final";
+        byte[] authByte = Base64.encodeBase64(auth.getBytes());
+        String authInfo = new String(authByte);
+        urlConnection.setRequestProperty("Authorization", "Basic " + authInfo);
+        InputStream inputStream = httpURLConnection.getInputStream();
+        Scanner scanner = new Scanner(inputStream);
+
+        while (scanner.hasNext()) {
+            System.out.println(scanner.nextLine());
+        }
     }
 }
