@@ -2,7 +2,7 @@ package com.jls.kku_final_api.Security;
 
 import com.jls.kku_final_api.DTO.NUser;
 import com.jls.kku_final_api.DTO.NUserLogin;
-import com.jls.kku_final_api.Repository.NUserRepository;
+import com.jls.kku_final_api.Repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class NUserDetailService implements UserDetailsService {
 
     @Autowired
-    private NUserRepository userRepository;
+    private LoginRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {

@@ -2,7 +2,7 @@ package com.jls.kku_final_api.Controller;
 
 import com.jls.kku_final_api.DTO.NUser;
 import com.jls.kku_final_api.DTO.Response;
-import com.jls.kku_final_api.Repository.NUserRepository;
+import com.jls.kku_final_api.Repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import java.util.List;
 public class NUserController {
 
     @Autowired
-    private NUserRepository repository;
+    private LoginRepository repository;
 
     //유저 조회
     @GetMapping("/user")

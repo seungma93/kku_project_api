@@ -3,16 +3,13 @@ package com.jls.kku_final_api.DTO;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "n_user")
+@Table(name = "users")
 public class NUser implements Serializable {
     @Id
     @Column(name = "u_id")
@@ -29,4 +26,7 @@ public class NUser implements Serializable {
 
     @Column(name = "u_profile_img")
     private String profileImg;
+
+    @Transient
+    private String token;
 }

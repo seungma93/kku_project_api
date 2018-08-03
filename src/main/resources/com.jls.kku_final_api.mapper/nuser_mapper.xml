@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.jls.kku_final_api.Repository.NUserRepository">
+<mapper namespace="com.jls.kku_final_api.Repository.LoginRepository">
 
     <select id="findAll" resultType="com.jls.kku_final_api.DTO.NUser">
-        SELECT * FROM n_user;
+        SELECT * FROM users;
     </select>
 
     <select id="findById" resultType="com.jls.kku_final_api.DTO.NUser">
-        SELECT * FROM n_user WHERE u_id = :u_id;
+        SELECT * FROM users WHERE u_id = :u_id;
     </select>
 
+    <select id="findByIdAndPw" resultType="com.jls.kku_final_api.DTO.NUser">
+        SELECT * FROM users WHERE u_id = :u_id AND  u_pw = :u_pw;
+    </select>
 </mapper>

@@ -15,7 +15,7 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class HttpTest {
+public class TokenTest {
     @Test
     public void tokenTest() throws IOException {
         Authenticator.setDefault(new Authenticator() {
