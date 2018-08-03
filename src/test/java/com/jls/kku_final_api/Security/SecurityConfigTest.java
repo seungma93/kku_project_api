@@ -10,7 +10,7 @@ public class SecurityConfigTest {
     @Test
     public void passwordEncoder() {
         BCryptPasswordEncoder bcr = new BCryptPasswordEncoder();
-        String result = bcr.encode("kku_final");
+        String result = bcr.encode("1234");
         System.out.println("암호 === " + result);
     }
 }

@@ -15,12 +15,6 @@ public class LoginTest {
 
     @Test
     public void loginTest() throws IOException {
-        LoginController loginController = new LoginController();
-        Map<String, String> userInfo = new HashMap<>();
-        userInfo.put("client_id", "nuser");
-        userInfo.put("client_secret", "kku_final");
-        userInfo.put("u_id", "joe");
-        userInfo.put("u_pw", "1234");
-        loginController.login(userInfo);
+
     }
 }

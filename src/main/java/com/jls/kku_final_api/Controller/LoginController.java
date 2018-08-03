@@ -9,6 +9,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -26,6 +28,9 @@ public class LoginController {
     @Autowired
     private LoginRepository repository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping("findId")
     public ResponseEntity<NUser> findId(String id) throws RuntimeException {
         Optional<NUser> nUser = repository.findById(id);
@@ -37,10 +42,16 @@ public class LoginController {
 
     @GetMapping("login")
     public ResponseEntity<NUser> login(String id, String pw, String role) throws RuntimeException, IOException {
-        Optional<NUser> user = repository.findByIdAndPw(id, pw);
-        if (!user.isPresent()) {
+        /*Optional<NUser> dbPw = repository.findByPw(id);
+        if (!dbPw.isPresent() || !passwordEncoder.matches(pw, dbPw.get().getPw())) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }*/
+
+        Optional<NUser> user = repository.findById(id);
+        if (!user.isPresent() || !passwordEncoder.matches(pw, user.get().getPw())) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
         String token = getToken(id, pw, role);
         user.get().setToken(token);
         return new ResponseEntity<>(user.get(), HttpStatus.OK);

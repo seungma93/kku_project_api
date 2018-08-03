@@ -27,6 +27,9 @@ public class NUser implements Serializable {
     @Column(name = "u_profile_img")
     private String profileImg;
 
+    @Column(name = "u_role")
+    private String role;
+
     @Transient
     private String token;
 }
