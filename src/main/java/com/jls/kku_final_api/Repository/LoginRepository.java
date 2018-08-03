@@ -18,9 +18,4 @@ public interface LoginRepository extends JpaRepository<NUser, String> {
 
     @Override
     Optional<NUser> findById(@Param("u_id") String u_id);
-
-    Optional<NUser> findByPw(@Param("u_id") String u_id);
-
-    Optional<NUser> findByIdAndRole(
-            @Param("u_id") String u_id, @Param("u_role") String u_role);
 }

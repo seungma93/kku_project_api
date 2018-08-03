@@ -10,12 +10,4 @@
     <select id="findById" resultType="com.jls.kku_final_api.DTO.NUser">
         SELECT * FROM users WHERE u_id = :u_id;
     </select>
-
-    <select id="findByIdAndPw" resultType="com.jls.kku_final_api.DTO.NUser">
-        SELECT * FROM users WHERE u_id = :u_id AND u_role = :u_role;
-    </select>
-
-    <select id="findByPw" resultType="com.jls.kku_final_api.DTO.NUser">
-        SELECT * FROM users WEHRE u_id = :u_id;
-    </select>
 </mapper>

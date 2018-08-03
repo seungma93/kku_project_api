@@ -41,18 +41,13 @@ public class LoginController {
     }
 
     @GetMapping("login")
-    public ResponseEntity<NUser> login(String id, String pw, String role) throws RuntimeException, IOException {
-        /*Optional<NUser> dbPw = repository.findByPw(id);
-        if (!dbPw.isPresent() || !passwordEncoder.matches(pw, dbPw.get().getPw())) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }*/
-
+    public ResponseEntity<NUser> login(String id, String pw) throws RuntimeException, IOException {
         Optional<NUser> user = repository.findById(id);
         if (!user.isPresent() || !passwordEncoder.matches(pw, user.get().getPw())) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        String token = getToken(id, pw, role);
+        String token = getToken(id, pw, user.get().getRole());
         user.get().setToken(token);
         return new ResponseEntity<>(user.get(), HttpStatus.OK);
     }
