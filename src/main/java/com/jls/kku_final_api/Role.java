@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Role {
-    public final static String ADMIN = "admin";
-    public final static String NUSER = "nuser";
-    public final static String VUSER = "vuser";
+    public final static int ADMIN = 1;
+    public final static int NUSER = 2;
+    public final static int VUSER = 3;
 
-    public static Map getRole(String role) {
+    public static Map getRole(int role) {
         Map<String, String> userInfo = new HashMap<>();
         switch (role) {
             case ADMIN:

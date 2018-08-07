@@ -1,6 +1,5 @@
 package com.jls.kku_final_api.DTO;
 
-import com.jls.kku_final_api.ResponseCode;
 import lombok.Getter;
 import lombok.Setter;
 

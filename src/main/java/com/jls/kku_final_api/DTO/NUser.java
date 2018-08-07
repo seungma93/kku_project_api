@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
+@Table(name = "nuser")
 public class NUser implements Serializable {
     @Id
     @Column(name = "u_id")
@@ -28,7 +28,7 @@ public class NUser implements Serializable {
     private String profileImg;
 
     @Column(name = "u_role")
-    private String role;
+    private int role;
 
     @Transient
     private String token;

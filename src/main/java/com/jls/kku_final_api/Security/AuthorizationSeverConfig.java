@@ -1,5 +1,6 @@
 package com.jls.kku_final_api.Security;
 
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -53,15 +55,21 @@ public class AuthorizationSeverConfig extends AuthorizationServerConfigurerAdapt
         return new JwtTokenStore(accessTokenConverter());
     }
 
+    /**
+     * 서명키와 확인키를 임시 스트링을 사용하였고
+     * 추후 공개키와 비밀키로 변경 해야함.
+     */
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
-        System.out.println("EnableAuthorizationServer tokenStore");
+        System.out.println("EnableAuthorizationServer accessTokenConverter");
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         ClassPathResource pathResource = new ClassPathResource("server.jks");
         KeyPair keyPair = new KeyStoreKeyFactory(pathResource, "qweqwe".toCharArray())
                 .getKeyPair("server_private", "zaqwsx".toCharArray());
         converter.setKeyPair(keyPair);
-        converter.setVerifierKey(publicKey);
+        converter.setSigningKey("hello");
+        //converter.setSigningKey(new String(keyPair.getPrivate().getEncoded()));
+        //converter.setVerifierKey(Base64.encode(keyPair.getPublic().getEncoded()));
         return converter;
     }
 
@@ -73,6 +81,11 @@ public class AuthorizationSeverConfig extends AuthorizationServerConfigurerAdapt
         defaultTokenServices.setTokenStore(tokenStore());
         defaultTokenServices.setSupportRefreshToken(true);
         return defaultTokenServices;
+    }
+
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        super.configure(security);
     }
 
     @Override

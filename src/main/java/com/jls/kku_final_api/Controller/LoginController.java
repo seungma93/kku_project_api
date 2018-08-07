@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 @RestController
-@RequestMapping("login")
+@RequestMapping("user")
 public class LoginController {
     @Autowired
     private LoginRepository repository;
@@ -52,7 +52,7 @@ public class LoginController {
         return new ResponseEntity<>(user.get(), HttpStatus.OK);
     }
 
-    private String getToken(String userId, String userPw, String role) throws IOException {
+    private String getToken(String userId, String userPw, int role) throws IOException {
         Map roleInfo = Role.getRole(role);
         String clientId = (String) roleInfo.get("client_id");
         String clientSecret = (String) roleInfo.get("client_secret");

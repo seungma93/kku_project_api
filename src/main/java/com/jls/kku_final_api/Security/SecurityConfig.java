@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         //super.configure(web);
-        web.ignoring().antMatchers("/login/findId", "/login/login");
+        web.ignoring().antMatchers("/user/findId", "/user/login");
     }
 
     @Override
